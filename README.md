@@ -117,7 +117,7 @@ We do not have the **gcc** compiler!
 
 We have compiled a very recent gcc version for execution in PASE and have packaged it inside option 2 of PowerRuby CE2.
 
-Refer to the official [PowerRuby CE2 Installation Guide](https://github.com/PowerRuby/DE_train_01/blob/master/README.md) for istallation instructions and download the corresponding SAVEFILE here.
+Refer to the official [PowerRuby CE2 Installation Guide](https://github.com/PowerRuby/DE_train_01/blob/master/README.md) for istallation instructions and download the corresponding SAVEFILE [here]().
 
 Once gcc compiler is installed:
 
@@ -143,7 +143,7 @@ we can try again our compilation (note the prepended `PATH=/PowerRuby/gcc/bin:$P
     File: byebug-10.0.2-powerpc-aix-7.gem
 ```
 
-This time the compilation was successful. We have a brand new build of byebug for PASE!
+This time the compilation was successful. We have a brand new build of **byebug** for PASE!
 
 Let us install it:
 
