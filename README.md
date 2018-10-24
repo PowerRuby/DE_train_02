@@ -36,7 +36,7 @@ We can list the gems installed by PowerRuby and filter the ones that were compil
 
 Now we look (locally) for **gem-compiler** 
 
-```    
+```console    
   $                                                                                                       
 > /PowerRuby/prV2R4/bin/gem list gem-co                                                                   
                                                                                                           
@@ -56,7 +56,7 @@ We suggest to prepare and revise gems by first fetching them on a development sy
 
 By default this is the remote source for installations:
 
-```
+```console
   $                                             
 > /PowerRuby/prV2R4/bin/gem env remotesources   
   https://rubygems.org/                         
@@ -65,7 +65,7 @@ By default this is the remote source for installations:
 
 To install a gem that was pre-fetched (and presumably transferred on the production system):
 
-```
+```console
   $
 > /PowerRuby/prV2R4/bin/gem install ./gem-compiler-0.8.0.gem 
   Successfully installed gem-compiler-0.8.0
@@ -78,33 +78,33 @@ To install a gem that was pre-fetched (and presumably transferred on the product
 
 So let us suppose we just fetched (and transferred) a gem requiring compilation (e.g. [byebug gem](https://rubygems.org/gems/byebug)).                                                                                                  
 
-```
--bash-4.4$ /PowerRuby/prV2R4/bin/gem compile ./byebug-10.0.2.gem                  
-Unpacking gem: 'byebug-10.0.2' in temporary directory...
-Building native extensions. This could take a while...
-ERROR:  While executing gem ... (Gem::Ext::BuildError)
-    ERROR: Failed to build gem native extension.
+```console
+> /PowerRuby/prV2R4/bin/gem compile ./byebug-10.0.2.gem                  
+  Unpacking gem: 'byebug-10.0.2' in temporary directory...
+  Building native extensions. This could take a while...
+  ERROR:  While executing gem ... (Gem::Ext::BuildError)
+      ERROR: Failed to build gem native extension.
 
-    current directory: /tmp/d20181024-341834-u9hxuc/byebug-10.0.2/ext/byebug
-/PowerRuby/prV2R4/bin/ruby -r ./siteconf20181024-341834-nv0s7a.rb extconf.rb
-creating Makefile
+      current directory: /tmp/d20181024-341834-u9hxuc/byebug-10.0.2/ext/byebug
+  /PowerRuby/prV2R4/bin/ruby -r ./siteconf20181024-341834-nv0s7a.rb extconf.rb
+  creating Makefile
 
-current directory: /tmp/d20181024-341834-u9hxuc/byebug-10.0.2/ext/byebug
-make "DESTDIR=" clean
+  current directory: /tmp/d20181024-341834-u9hxuc/byebug-10.0.2/ext/byebug
+  make "DESTDIR=" clean
 
-current directory: /tmp/d20181024-341834-u9hxuc/byebug-10.0.2/ext/byebug
-make "DESTDIR="
-compiling breakpoint.c
-/bin/sh: gcc:  not found
-make: The error code from the last command is 127.
+  current directory: /tmp/d20181024-341834-u9hxuc/byebug-10.0.2/ext/byebug
+  make "DESTDIR="
+  compiling breakpoint.c
+  /bin/sh: gcc:  not found
+  make: The error code from the last command is 127.
 
 
-Stop.
+  Stop.
 
-make failed, exit code 2
+  make failed, exit code 2
 
-Gem files will remain installed in /tmp/d20181024-341834-u9hxuc/byebug-10.0.2 for inspection.
-Results logged to /tmp/d20181024-341834-u9hxuc/byebug-10.0.2/lib/gem_make.out
+  Gem files will remain installed in /tmp/d20181024-341834-u9hxuc/byebug-10.0.2 for inspection.
+  Results logged to /tmp/d20181024-341834-u9hxuc/byebug-10.0.2/lib/gem_make.out
 ```
 
 Something went wrong but keep calm! The explanation is really simple:
@@ -119,4 +119,40 @@ We have compiled a very recent gcc version for execution in PASE and have packag
 
 Refer to the official [PowerRuby CE2 Installation Guide](https://github.com/PowerRuby/DE_train_01/blob/master/README.md) for istallation instructions and download the corresponding SAVEFILE here.
 
+Once gcc compiler is installed:
+
+| Resource ID | Option | Feature | Description                                    | 
+| ----------- |:------ |:-------:|:---------------------------------------------- |   
+|   1PRUBY1   |  *BASE |   5001  |  IBM i PowerRuby (administration utilities)    | 
+|   1PRUBY1   |  *BASE |   2924  |  IBM i PowerRuby (administration utilities)    |
+|   1PRUBY1   |  1     |   5002  |  IBM i PowerRuby Developer Edition (irubydb)   |
+|   1PRUBY1   |  2     |   5003  |  IBM i PowerRuby Developer Edition (gcc)       |
+|   1PRUBY1   |  6     |   5001  |  IBM i PowerRuby (Ruby 2.4 + Rails 5.1)        |
+
+
+we can try again our compilation (note the prepended `PATH=/PowerRuby/gcc/bin:$PATH` specification): 
+
+```console
+> PATH=/PowerRuby/gcc/bin:$PATH /PowerRuby/prV2R4/bin/gem compile ./byebug-10.0.2.gem                  
+  Unpacking gem: 'byebug-10.0.2' in temporary directory...
+  Building native extensions. This could take a while...
+   /PowerRuby/prV2R4/lib/ruby/site_ruby/2.4.0/rubygems/ext/builder.rb:76: warning: Insecure world writable dir /PowerRuby/gcc/bin in PATH, mode 042777
+    Successfully built RubyGem
+    Name: byebug
+    Version: 10.0.2
+    File: byebug-10.0.2-powerpc-aix-7.gem
+```
+
+This time the compilation was successful. We have a brand new build of byebug for PASE!
+
+Let us install it:
+
+```console
+> /PowerRuby/prV2R4/bin/gem install ./byebug-10.0.2-powerpc-aix-7.gem
+  Successfully installed byebug-10.0.2-powerpc-aix-7
+  Parsing documentation for byebug-10.0.2-powerpc-aix-7
+  Installing ri documentation for byebug-10.0.2-powerpc-aix-7
+  Done installing documentation for byebug after 35 seconds
+  1 gem installed
+```
  
