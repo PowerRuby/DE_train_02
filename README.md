@@ -117,7 +117,7 @@ We do not have the **gcc** compiler!
 
 We have compiled a very recent gcc version for execution in PASE and have packaged it inside option 2 of PowerRuby CE2.
 
-Refer to the official [PowerRuby CE2 Installation Guide](https://github.com/PowerRuby/DE_train_01/blob/master/README.md) for istallation instructions and download the corresponding SAVEFILE [here]().
+Refer to the official [PowerRuby CE2 Installation Guide](https://github.com/PowerRuby/DE_train_01/blob/master/README.md) for istallation instructions and download the corresponding SAVEFILE [here](https://github.com/PowerRuby/DE_train_02/releases/tag/V2R0M0).
 
 Once gcc compiler is installed:
 
