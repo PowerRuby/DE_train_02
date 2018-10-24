@@ -76,7 +76,7 @@ To install a gem that was pre-fetched (and presumably transferred on the product
   $
 ```
 
-So let us suppose we just fetched (and transferred) a gem requiring compilation (e.g. [byebug gem](https://rubygems.org/gems/byebug)).                                                                                                  
+So let us suppose we just fetched (and transferred) a gem requiring compilation (e.g. [byebug gem](https://rubygems.org/gems/byebug)). We use the `gem compile` subcommand (enabled by the local installation of **gem-compiler** gem) passing the path (absolute or relative) to the gem just fetched/moved.                                                                                                   
 
 ```console
 > /PowerRuby/prV2R4/bin/gem compile ./byebug-10.0.2.gem                  
@@ -107,7 +107,7 @@ So let us suppose we just fetched (and transferred) a gem requiring compilation 
   Results logged to /tmp/d20181024-341834-u9hxuc/byebug-10.0.2/lib/gem_make.out
 ```
 
-Something went wrong but keep calm! The explanation is really simple:
+Something went wrong... but keep calm: the explanation is really simple:
 
 `/bin/sh: gcc:  not found`
 
@@ -119,7 +119,7 @@ We have compiled a very recent gcc version for execution in PASE and have packag
 
 Refer to the official [PowerRuby CE2 Installation Guide](https://github.com/PowerRuby/DE_train_01/blob/master/README.md) for istallation instructions and download the corresponding SAVEFILE [here](https://github.com/PowerRuby/DE_train_02/releases/tag/V2R0M0).
 
-Once gcc compiler is installed:
+Once **gcc** compiler is installed:
 
 | Resource ID | Option | Feature | Description                                    | 
 | ----------- |:------ |:-------:|:---------------------------------------------- |   
@@ -143,7 +143,7 @@ we can try again our compilation (note the prepended `PATH=/PowerRuby/gcc/bin:$P
     File: byebug-10.0.2-powerpc-aix-7.gem
 ```
 
-This time the compilation was successful. We have a brand new build of **byebug** for PASE!
+This time the compilation was successful. We have a brand new build of **byebug** working for IBM i PASE!
 
 Let us install it:
 
@@ -156,3 +156,6 @@ Let us install it:
   1 gem installed
 ```
  
+The byebug gem is wonderful: if you are going to develop with PowerRuby remember to get acquainted to it.
+You can learn how to use byebug from Rails console in this [tutorial](https://edgeguides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-byebug-gem).
+
